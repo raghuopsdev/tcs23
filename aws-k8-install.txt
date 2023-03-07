@@ -1,3 +1,5 @@
+This is Using KOPS Utility (Which is a community utility for AWS K8 cluster setup)
+
 1. Create Ubuntu EC2 Instance
 
 2. Install AWSCLI
