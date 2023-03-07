@@ -1,0 +1,55 @@
+1. Create Ubuntu EC2 Instance
+
+2. Install AWSCLI
+
+ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+ unzip awscliv2.zip
+ sudo ./aws/install
+ aws --version
+
+3. Install kubectl
+
+   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+ chmod +x ./kubectl
+ sudo mv ./kubectl /usr/local/bin/kubectl
+
+4. Create an IAM user/role with Route53, EC2, IAM and S3 full access
+	https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
+
+5. Attach IAM role to ubuntu server
+	https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
+
+6. aws configure (No access key needed, but provide region, for eg:- Mumbai "ap-south-1")
+
+7. Install KOPS on this ubuntu instance:
+    curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+ chmod +x kops-linux-amd64
+ sudo mv kops-linux-amd64 /usr/local/bin/kops
+
+8. Create a Route53 private hosted zone (you can create Public hosted zone if you have a domain) 
+	eg: edureka.in
+
+9. create an S3 bucket
+
+	 aws s3 mb s3://dev.k8s.edureka.in
+
+10. Expose environment variable:
+
+	 export KOPS_STATE_STORE=s3://dev.k8s.edureka.in
+
+11. Create sshkeys before creating cluster
+
+	 ssh-keygen
+
+12. Create kubernetes cluster definitions on S3 bucket
+
+	 kops create cluster --cloud=aws --zones=ap-south-1a --name=dev.k8s.edureka.in --dns-zone=edureka.in --dns private
+
+	(Note you can edit instance type if you want at the kops command prompt for master and slave(
+
+13. Create kubernetes cluser
+
+	  kops update cluster dev.k8s.edureka.in --yes
+       (For Dry Run remove "--yes" option)
+
+14. 
