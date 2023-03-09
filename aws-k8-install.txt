@@ -47,8 +47,9 @@ This is Using KOPS Utility (Which is a community utility for AWS K8 cluster setu
 12. Create kubernetes cluster definitions on S3 bucket
 
 	 kops create cluster --cloud=aws --zones=ap-south-1a --name=dev.k8s.tcs.in --dns-zone=tcs.in --dns private
-
 	(Note you can edit instance type if you want at the kops command prompt for master and slave)
+	 kops create cluster --cloud=aws --zones=ap-south-1a --name=ap-south-1.k8s.local
+	 (If you do not want to use ROUTE53 option instead )
 
 13. Create kubernetes cluser
 
