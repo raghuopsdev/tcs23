@@ -67,3 +67,18 @@ Create IAM Account will Full Admin access (however in production we will limit t
   eksctl delete cluster tcs-demo-cluster
   
   Please note EKS is not free tier eligble service, refer documentation for Pricing details.
+  
+  
+  OTHERWAY WAY OF EKS INSTALLATION
+  =================================
+  1) FROM UI CREATE AN EKS CLUSTER (WHICH WILL CREATE ONLY CONTROLPLANE/MASTER) -- It will take minimum of 10 to 15 minutes
+          a) Create Role and assign AmazonEKSClusterPolicy
+  2) TAKE A MACHINE(can be your local laptop/EC2) 
+  3) INSTALL AWSCLI & KUBECTL based on the OS.
+          a) Setup an aws account/root access keys 
+  4) Configure IAM Role to have EKS related access (i.e. AmazonEKS_CNI_Policy, AmazonEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadonly) 
+          a) Create nodes of the same
+  5) From local/ec2 ubuntu machine now you should be able to get nodes
+           eg: kubectl get nodes.
+  5) Create Node
+  5)
