@@ -80,5 +80,4 @@ Create IAM Account will Full Admin access (however in production we will limit t
           a) Create nodes of the same
   5) From local/ec2 ubuntu machine now you should be able to get nodes
            eg: kubectl get nodes.
-  5) Create Node
-  5)
+  6) Create Node
